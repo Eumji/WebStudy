@@ -1,0 +1,47 @@
+<html>
+	<head>
+		<link rel="shortcut icon" href="">
+		<script>
+			window.addEventListener('load', () => {
+				const div = document.getElementById("divId")
+				div.addEventListener('click', () => {
+					const input = document.getElementById("inputId");
+
+					fetch("/write",{
+						/*
+						body: JSON.stringify(data)
+						headers: {
+							'content-type': 'application/json'
+						},
+						*/
+						method: 'POST'
+					})
+					.then(function(response) {
+						return response.json();
+					})
+					.then(function(myJson) {
+						console.log(myJson);
+					});
+				});
+				const div2 = document.getElementById("divId2")
+				div2.addEventListener('click', () => {
+					fetch("/getpost",{
+						method: 'POST'
+					})
+					.then(function(response) {
+						return response.json();
+					})
+					.then(function(myJson) {
+						console.log(myJson);
+					});
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<input type="text" id="inputId"/>
+		<div id="divId" >click</div>
+		<div id="divId2" >get post</div>
+	</body>
+</html>
+
